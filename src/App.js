@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
+import Footer from "./pages/Footer";
+import Navbar from "./pages/Navbar";
+import Register from "./pages/Register";
+import LogIn from "./pages/LogIn";
+import Tasks from "./components/Task";
 
 function App() {
+  const [loggedInUser, setLoggedInUser] = useState("");
+
+  const handleLogout = () => {
+    setLoggedInUser("");
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar userName={loggedInUser} onLogout={handleLogout} />
+
+      <div className="main-content">
+        <h1>Welcome to Task Management</h1>
+      </div>
+
+      <Routes>
+        <Route path="/register" element={<Register />} />
+        <Route
+          path="/login"
+          element={<LogIn updateLoggedInUser={setLoggedInUser} />}
+        />
+        <Route path="/task" element={<Tasks />} />
+      </Routes>
+      <Footer />
     </div>
   );
 }
