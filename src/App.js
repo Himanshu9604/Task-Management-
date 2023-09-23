@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Footer from "./pages/Footer";
 import Navbar from "./pages/Navbar";
 import Register from "./pages/Register";
 import LogIn from "./pages/LogIn";
@@ -18,8 +17,8 @@ function App() {
     <div className="App">
       <Navbar userName={loggedInUser} onLogout={handleLogout} />
 
-      <div className="main-content">
-        <h1>Welcome to Task Management</h1>
+      <div className="main-content" >
+        <h1 >Welcome to Task Management</h1>
       </div>
 
       <Routes>
@@ -30,7 +29,7 @@ function App() {
         />
         <Route path="/task" element={<Tasks />} />
       </Routes>
-      <Footer />
+     
     </div>
   );
 }

@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 const Navbar = ({ userName, onLogout }) => {
+  const isLoggedIn = !!userName;
+
   return (
     <nav className="navbar">
       <div className="container">
@@ -17,7 +19,7 @@ const Navbar = ({ userName, onLogout }) => {
         </div>
         <ul className="nav-links">
           <li>
-            {userName ? (
+            {isLoggedIn ? (
               <>
                 Welcome, {userName}!
                 <button className="logout-button" onClick={onLogout}>
@@ -31,9 +33,12 @@ const Navbar = ({ userName, onLogout }) => {
           <li>
             <Link to="/register">Register</Link>
           </li>
-          <li>
-            <Link to="/task">Add User</Link>
-          </li>
+
+          {isLoggedIn && (
+            <li>
+              <Link to="/task">Add User</Link>
+            </li>
+          )}
         </ul>
       </div>
     </nav>
@@ -41,10 +46,3 @@ const Navbar = ({ userName, onLogout }) => {
 };
 
 export default Navbar;
-
-
-
-
-
-
-
